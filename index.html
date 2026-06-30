@@ -1,17 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Encanto Elixir | Catálogo</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div id="loginView" class="login-screen">
-    <div class="login-card glass">
-      <img src="assets/logo-encanto-elixir.jpeg" alt="Encanto Elixir" class="login-logo" onerror="this.style.display='none'">
-      <h1>Encanto Elixir</h1>
-      <p>Panel privado del catálogo</p>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo-encanto-elixir.jpeg" alt="Encanto Elixir">
+      <div>
+        <strong>Encanto Elixir</strong>
+        <span>Perfumería</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="adminToggle" class="hidden">Panel admin</button>
+      <button id="logoutBtn" class="hidden secondary">Salir</button>
+      <button id="loginOpenBtn">Iniciar sesión</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <img src="assets/logo-encanto-elixir.jpeg" alt="Encanto Elixir" class="hero-logo">
+      <p class="eyebrow">Catálogo digital</p>
+      <h1>Fragancias para cada estilo</h1>
+      <p class="hero-text">Explora las lociones disponibles, revisa precios y encuentra tu aroma ideal.</p>
+
+      <div class="search-area">
+        <div class="smart-search">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Buscar por nombre, precio o categoría...">
+        </div>
+        <select id="categoryFilter">
+          <option value="">Todas</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="adminPanel" class="admin-panel hidden">
+      <div class="section-title">
+        <h2>Panel de administración</h2>
+        <p>Registra, edita o elimina lociones. Las imágenes se guardan localmente en este navegador.</p>
+      </div>
+
+      <form id="productForm" class="product-form">
+        <input type="hidden" id="productId">
+        <label>Nombre<input id="productName" required placeholder="Ej: 212 MEN"></label>
+        <label>Precio<input id="productPrice" required placeholder="Ej: 95.000"></label>
+        <label>Categoría<input id="productCategory" placeholder="Masculino, Femenino, Árabe..."></label>
+        <label>Imagen<input id="productImage" type="file" accept="image/*"></label>
+        <div class="form-actions">
+          <button type="submit">Guardar</button>
+          <button type="button" id="clearForm" class="secondary">Limpiar</button>
+        </div>
+      </form>
+
+      <div class="tools">
+        <button id="exportBtn">Exportar respaldo JSON</button>
+        <label class="import-btn">Importar JSON<input id="importInput" type="file" accept="application/json"></label>
+        <button id="resetBtn" class="danger">Restaurar lista inicial</button>
+      </div>
+    </section>
+
+    <section class="catalog-title">
+      <h2>Catálogo de lociones</h2>
+      <p id="countText"></p>
+    </section>
+
+    <section id="catalogGrid" class="catalog-grid"></section>
+  </main>
+
+  <div id="loginModal" class="modal hidden">
+    <div class="modal-card">
+      <button id="loginCloseBtn" class="close">×</button>
+      <img src="assets/logo-encanto-elixir.jpeg" alt="Logo" class="modal-logo">
+      <h2>Iniciar sesión</h2>
+      <p>Acceso privado para administrar el catálogo.</p>
       <form id="loginForm">
         <input id="username" type="text" placeholder="Usuario" autocomplete="username" required>
         <input id="password" type="password" placeholder="Clave" autocomplete="current-password" required>
@@ -21,69 +90,10 @@
     </div>
   </div>
 
-  <div id="appView" class="app hidden">
-    <header class="hero">
-      <nav>
-        <div class="brand">
-          <img src="assets/logo-encanto-elixir.jpeg" alt="Logo" onerror="this.style.display='none'">
-          <div><strong>Encanto Elixir</strong><span>Catálogo de Fragancias</span></div>
-        </div>
-        <div class="nav-actions">
-          <button id="adminToggle" class="ghost">Panel admin</button>
-          <button id="logoutBtn" class="ghost">Salir</button>
-        </div>
-      </nav>
-      <section class="hero-content">
-        <h1>Catálogo Premium</h1>
-        <p>Fragancias seleccionadas con estilo, precio claro y presentación elegante.</p>
-        <div class="searchbar">
-          <input id="searchInput" type="search" placeholder="Buscar loción por nombre...">
-          <select id="categoryFilter">
-            <option value="">Todas las categorías</option>
-          </select>
-        </div>
-      </section>
-    </header>
-
-    <main>
-      <section id="adminPanel" class="admin-panel hidden">
-        <div class="section-title">
-          <h2>Administrar lociones</h2>
-          <p>Agrega imagen, cambia precio o crea nuevos productos. Todo queda guardado en este navegador.</p>
-        </div>
-
-        <form id="productForm" class="product-form">
-          <input type="hidden" id="productId">
-          <label>Nombre<input id="productName" required placeholder="Ej: 212 MEN"></label>
-          <label>Precio<input id="productPrice" required placeholder="Ej: 95.000"></label>
-          <label>Categoría<input id="productCategory" placeholder="Masculino, Femenino, Árabe..."></label>
-          <label>Imagen<input id="productImage" type="file" accept="image/*"></label>
-          <div class="form-actions">
-            <button type="submit">Guardar</button>
-            <button type="button" id="clearForm" class="secondary">Limpiar</button>
-          </div>
-        </form>
-
-        <div class="tools">
-          <button id="exportBtn">Exportar datos JSON</button>
-          <label class="import-btn">Importar JSON<input id="importInput" type="file" accept="application/json"></label>
-          <button id="resetBtn" class="danger">Restaurar lista inicial</button>
-        </div>
-      </section>
-
-      <section class="catalog-header">
-        <h2>Nuestras fragancias</h2>
-        <p id="countText"></p>
-      </section>
-
-      <section id="catalogGrid" class="catalog-grid"></section>
-    </main>
-
-    <footer>
-      <strong>Encanto Elixir</strong>
-      <span>Catálogo editable para GitHub Pages</span>
-    </footer>
-  </div>
+  <footer>
+    <strong>Encanto Elixir</strong>
+    <span>Catálogo digital de fragancias</span>
+  </footer>
 
   <script src="data.js"></script>
   <script src="script.js"></script>

@@ -1,25 +1,27 @@
-# Encanto Elixir - Catálogo Web v1.0
+# Encanto Elixir - Catálogo Web v2.0
 
-Usuario único:
-- Usuario: SusanaGS
-- Clave: S.usa.435*
+## Cambios de esta versión
+- La página abre directamente en vista pública para clientes.
+- Arriba aparece el botón `Iniciar sesión`.
+- El panel admin solo aparece después de iniciar sesión.
+- Buscador inteligente por nombre, precio o categoría.
+- Logo actualizado con la imagen enviada.
+- Permite registrar, editar, borrar y subir imagen de cada perfume.
 
-## Cómo usar
-1. Abre `index.html` en tu navegador.
-2. Inicia sesión.
-3. Entra a `Panel admin`.
-4. Edita una loción y sube su imagen.
-5. Exporta el JSON para guardar copia de seguridad.
+## Acceso admin
+Usuario: SusanaGS  
+Clave: S.usa.435*
 
-## Montar en GitHub Pages
-1. Crea un repositorio en GitHub.
-2. Sube estos archivos: `index.html`, `style.css`, `script.js`, `data.js` y carpeta `assets`.
-3. Ve a Settings > Pages.
-4. Source: Deploy from a branch.
-5. Branch: main / root.
-6. Guarda y espera el enlace.
+## Cómo subir a GitHub Pages
+Sube estos archivos al repositorio:
+- index.html
+- style.css
+- script.js
+- data.js
+- assets/
 
-## Importante de seguridad
-Este proyecto es estático, ideal para catálogo simple en GitHub Pages.
-La clave está en el JavaScript, así que NO es seguridad real para datos sensibles.
-Para algo realmente seguro se necesita backend con base de datos y autenticación real.
+Luego activa GitHub Pages en:
+Settings > Pages > Deploy from a branch > main > /root > Save
+
+## Nota importante
+La clave está en JavaScript porque GitHub Pages es estático. Sirve para catálogo básico, pero no para seguridad real.
