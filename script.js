@@ -13,8 +13,13 @@ function loadProducts(){
 }
 function saveProducts(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); }
 
+function sortProducts(){
+  products.sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'}));
+}
+
 function initPublicCatalog(){
   loadProducts();
+  sortProducts();
   renderCategories();
   renderCatalog();
 
@@ -136,7 +141,7 @@ $("productForm").addEventListener("submit", async e=>{
     image
   };
   if(existing) Object.assign(existing, product); else products.unshift(product);
-  saveProducts(); renderCategories(); renderCatalog(); clearForm();
+  sortProducts(); saveProducts(); renderCategories(); renderCatalog(); clearForm();
 });
 
 function editProduct(id){
@@ -164,12 +169,12 @@ $("exportBtn").onclick = ()=>{
 
 $("importInput").onchange = async e=>{
   const file = e.target.files[0]; if(!file) return;
-  products = JSON.parse(await file.text()); saveProducts(); renderCategories(); renderCatalog(); e.target.value="";
+  products = JSON.parse(await file.text()); sortProducts(); saveProducts(); renderCategories(); renderCatalog(); e.target.value="";
 };
 
 $("resetBtn").onclick = ()=>{
   if(confirm("Esto borra cambios locales y restaura la lista inicial. ¿Continuar?")){
-    localStorage.removeItem(STORAGE_KEY); loadProducts(); renderCategories(); renderCatalog();
+    localStorage.removeItem(STORAGE_KEY); loadProducts(); sortProducts(); renderCategories(); renderCatalog();
   }
 };
 
