@@ -35,7 +35,7 @@
       <section id="adminPanel" class="admin-panel hidden">
         <div class="section-title">
           <h2>Administrar lociones</h2>
-          <p>Agrega imagen, cambia precio, detalles o crea nuevos productos. Todo queda guardado en este navegador.</p>
+          <p>Agrega ruta de imagen, cambia precio, detalles o crea nuevos productos. Todo queda guardado en este navegador.</p>
         </div>
         <form id="productForm" class="product-form">
           <input type="hidden" id="productId">
@@ -43,7 +43,7 @@
           <label>Precio<input id="productPrice" required placeholder="Ej: 95.000"></label>
           <label>Categoría<input id="productCategory" placeholder="Masculino, Femenino, Árabe..."></label>
           <label>Detalles<input id="productDetails" placeholder="Ej: Dulce, fresco, excelente duración..."></label>
-          <label>Imagen<input id="productImage" type="file" accept="image/*"></label>
+          <label>Imagen en assets<input id="productImage" type="text" placeholder="Ej: assets/212-men.jpg"></label>
           <div class="form-actions"><button type="submit">Guardar</button><button type="button" id="clearForm" class="secondary">Limpiar</button></div>
         </form>
         <div class="tools">
@@ -63,7 +63,7 @@
       <img src="assets/logo-encanto-elixir.jpeg" alt="Encanto Elixir" class="login-logo" onerror="this.style.display='none'">
       <h1>Encanto Elixir</h1><p>Acceso privado para administrar el catálogo</p>
       <form id="loginForm">
-        <input id="username" type="text" placeholder="Usuario" autocomplete="username" required>
+        <input id="username" type="email" placeholder="Correo administrador" autocomplete="username" required>
         <input id="password" type="password" placeholder="Clave" autocomplete="current-password" required>
         <button type="submit">Ingresar</button><small id="loginError"></small>
       </form>
@@ -72,5 +72,5 @@
   <div id="productModal" class="product-modal hidden">
     <div class="product-modal-card"><button id="closeProductModal" class="close-login" type="button">×</button><div id="productModalContent"></div></div>
   </div>
-  <script src="data.js"></script><script src="script.js"></script>
+  <script src="data.js"></script><script type="module" src="script.js"></script>
 </body></html>

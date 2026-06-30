@@ -1,33 +1,44 @@
-# Encanto Elixir - Catálogo Web v1.3
+# Encanto Elixir - v2 Firestore + imágenes en assets
 
-Versión lista para compartir con clientes.
+Esta versión NO usa Firebase Storage, así evitamos activar facturación.
 
-## Incluye
-- Catálogo público al abrir.
-- Login para administrar.
-- Orden alfabético automático.
-- Mensaje informativo debajo del buscador.
-- Botones de WhatsApp e Instagram.
-- Campo nuevo `Detalles`.
-- Los detalles aparecen en cada tarjeta.
-- Vista ampliada al tocar una loción.
-- Botón `Comprar por WhatsApp`.
-- Login con SHA-256 para no dejar la clave en texto plano.
+## Cómo funciona
+- GitHub Pages aloja la página y la carpeta `assets`.
+- Firestore guarda nombre, precio, categoría, detalles y ruta de imagen.
+- Las imágenes se suben manualmente a la carpeta `assets` del repositorio.
 
-## Acceso
-Usuario: SusanaGS  
-Clave: S.usa.435*
+En el panel admin, en `Imagen en assets`, escribe por ejemplo:
 
-## Cambiar enlaces
-Abre `script.js` y cambia:
-
-```js
-const WHATSAPP_URL="https://wa.me/573046835989";
-const INSTAGRAM_URL="https://instagram.com/Encanto.Elixir";
+```txt
+assets/212-men.jpg
 ```
 
-WhatsApp debe quedar así:
+## Se sincroniza PC ↔ celular
+Sí se sincroniza:
+- nombre
+- precio
+- categoría
+- detalles
+- ruta de imagen
+
+La imagen como archivo NO se sube desde el panel; debes subirla a GitHub en `assets`.
+
+## Firebase necesario
+- Authentication
+- Firestore
+
+No necesitas Firebase Storage.
+
+## Reglas de Firestore
 
 ```js
-const WHATSAPP_URL="https://wa.me/57TU_NUMERO";
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /perfumes/{id} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
 ```
