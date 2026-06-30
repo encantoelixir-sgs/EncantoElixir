@@ -1,28 +1,33 @@
-# Encanto Elixir - Catálogo Web Cliente v1.1
+# Encanto Elixir - Catálogo Web v1.3
 
-Esta versión corrige la primera versión:
+Versión lista para compartir con clientes.
 
-- Al abrir la página, los clientes ven directamente el catálogo.
-- Arriba aparece el botón `Iniciar sesión`.
-- Solo al iniciar sesión aparece el panel para registrar, editar o borrar perfumes.
-- Se conserva el diseño de la primera versión.
-- Se conserva el logo original dentro de `assets`.
-- El buscador permite buscar por nombre, precio o categoría.
+## Incluye
+- Catálogo público al abrir.
+- Login para administrar.
+- Orden alfabético automático.
+- Mensaje informativo debajo del buscador.
+- Botones de WhatsApp e Instagram.
+- Campo nuevo `Detalles`.
+- Los detalles aparecen en cada tarjeta.
+- Vista ampliada al tocar una loción.
+- Botón `Comprar por WhatsApp`.
+- Login con SHA-256 para no dejar la clave en texto plano.
 
-## Acceso administrador
-
+## Acceso
 Usuario: SusanaGS  
 Clave: S.usa.435*
 
-## Archivos para subir a GitHub
+## Cambiar enlaces
+Abre `script.js` y cambia:
 
-Sube el contenido de esta carpeta:
+```js
+const WHATSAPP_URL="https://wa.me/573046835989";
+const INSTAGRAM_URL="https://instagram.com/Encanto.Elixir";
+```
 
-- index.html
-- style.css
-- script.js
-- data.js
-- README.md
-- assets/
+WhatsApp debe quedar así:
 
-No subas el ZIP directamente al repositorio.
+```js
+const WHATSAPP_URL="https://wa.me/57TU_NUMERO";
+```
